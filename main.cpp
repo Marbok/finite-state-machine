@@ -3,54 +3,31 @@
 #include <set>
 #include <vector>
 #include <map>
-#include <algorithm>
-#include <iterator>
 
+
+#include "binary_code.h"
+#include "string_validation.h"
 #include "fsm.h"
 
 using namespace std;
 
-/* const set<char> V1 = {'a', 'b', 'c', 'd', 'e', 'f'};
-const set<char> V2 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-const set<char> V3 = {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')'};
 
-const set<string> Q = {"q0", "q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"};
-const string S = "q0";
-const set<string> F = {"q0", "q1"}; */
-
-/* set<char> &set_union(vector<set<char>> &alphabets)
+int main(int argc, char *argv[])
 {
-    set<char> V;
-    for (const auto &alphabet : alphabets)
+    if (argc == 1)
     {
-        for (const auto &c : alphabet)
-        {
-            V.insert(c);
-        }
+        cerr << "Not arguments" << endl;
+        exit(1);
     }
-    return V;
-} */
+    string in = argv[1];
 
-const set<char> V = {'0', '1'};
-const set<string> Q = {"q0", "q1"};
-const string S = "q0";
-const set<string> F = {"q1"};
-const map<string, map<char, string>> d = {
-    {"q0", {{'0', "q1"}, {'1', "q1"}}},
-    {"q1", {{'0', "q1"}, {'1', "q1"}}}};
+    //FSM<bc::State> fsm(bc::V, bc::Q, bc::S, bc::F, bc::d); // binary code validation
 
-int main()
-{
-    string in;
-    cin >> in;
-
-    //    set<char> V = set_union({V1, V2, V3});
-    FSM fsm(V, Q, S, F, d);
+    FSM<sv::State> fsm(sv::V, sv::Q, sv::S, sv::F, sv::d); // string validation validation
 
     try
     {
-        bool result = fsm.Test(in);
-        cout << result << endl;
+        cout << fsm.Test(in) << endl;
     }
     catch (exception &e)
     {

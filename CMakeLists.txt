@@ -6,11 +6,12 @@ project(${This})
 
 set(Headers
     fsm.h
+    binary_code.h
+    string_validation.h
 )
 
 set(Sources
     main.cpp
-    fsm.cpp
 )
 
 add_executable(${This}.exe ${Headers} ${Sources})
