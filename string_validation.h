@@ -37,21 +37,21 @@ namespace sv
     const set<char> V3 = {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')'};
     const set<char> V = set_union(V1, V2, V3);
 
-    map<char, State> create_transitions(State v1, State v2, State v3)
+    map<char, State> create_transitions(State s1, State s2, State s3)
     {
         {
             map<char, State> result;
             for (const auto &c : V1)
             {
-                result.insert({c, v1});
+                result.insert({c, s1});
             }
             for (const auto &c : V2)
             {
-                result.insert({c, v2});
+                result.insert({c, s2});
             }
             for (const auto &c : V3)
             {
-                result.insert({c, v3});
+                result.insert({c, s3});
             }
             return result;
         }
